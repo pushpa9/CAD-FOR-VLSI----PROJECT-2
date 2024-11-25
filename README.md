@@ -2,6 +2,33 @@
 
 ### Pushpa Chaudhary - EE21B109, Fardeen Razif - EE21B046
 
+## Design Details
+
+### 1. **InnerMac Module**
+- Implements the core functionality of a single MAC (Multiply-Accumulate) operation.
+- Reuses the MAC logic from Project 1.
+
+### 2. **OuterMac Module**
+- Acts as a wrapper for the `InnerMac` module.
+- Stores inputs (`A`, `B`, `C`, and `S`) in registers before passing them to the `InnerMac`.
+- Additionally, it returns the values of `A` and `B` alongside the results.
+
+### 3. **Mac Module**
+- Constructs a **4x4 systolic array** from a 4x4 grid of `OuterMac` modules.
+- At every clock cycle:
+  - Propagates `B` and the results of `OuterMac` through the rows.
+  - Propagates `A` through the columns.
+- Outputs a 1x4 vector of results from the last row of `MAC` operations.
+
+## Verification Methodology
+
+There is a `test_mac.py` file which implements a cocotb testbench and verifies the random inputs using `model_mac.py`, which gives the expected output. It is also used in coverage.  
+Inputs are given and output is read as shown in the PDF.  
+
+### Note:
+- `S = 1` -> `int32`
+- `S = 0` -> `bfp16`
+
 ## How to Run
 
 * Download the `.zip` file. It would have a `mac_systolic_array` folder. 
@@ -23,7 +50,7 @@
   
 ### Separate Contributions
 
-1. **Mac_systolic_array bsv design **: Pushpa  
+1. **Mac_systolic_array bsv design**: Pushpa  
 2. **Cocotb testbench (`test_mac.py`) and `model_mac.py`**: Pushpa
 3. **`model_mac.py`**: Fardeen
 4. **General debugging**: Both  
