@@ -20,3 +20,11 @@
 2. **bfloat16**:
    * Code - completed
    * Verification - not completed
+  
+### Separate Contributions
+
+1. **Mac_systolic_array bsv design **: Pushpa  
+2. **Cocotb testbench (`test_mac.py`) and `model_mac.py`**: Pushpa
+3. **`model_mac.py`**: Fardeen
+4. **General debugging**: Both  
+5. **Readme**: Pushpa
